@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A Special Date! 💌</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pop-cream': '#f9f6f0',
+                        'pop-blue': '#aedce3',
+                        'pop-purple': '#362866',
+                        'pop-yellow': '#f8c85c',
+                        'pop-red': '#ee3e38',
+                        'pop-pink': '#f2a7be'
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '6px 6px 0px 0px rgba(0,0,0,1)',
+                        'brutal-lg': '10px 10px 0px 0px rgba(0,0,0,1)',
+                        'brutal-sm': '4px 4px 0px 0px rgba(0,0,0,1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight biru di HP */
+        }
+        
+        /* Pengaturan Khusus Tombol Kabur di HP */
+        #noBtn {
+            transition: all 0.2s ease-out;
+            touch-action: none; /* Mencegah layar scroll/zoom saat tombol disentuh */
+            user-select: none;  /* Mencegah teks ter-highlight */
+        }
+        
+        .comic-border {
+            border: 4px solid #000;
+        }
+    </style>
+</head>
+<body class="bg-pop-cream text-black font-sans selection:bg-pop-yellow selection:text-black">
+
+    <!-- Audio Element -->
+    <audio id="bgMusic" loop>
+        <source src="Am I Bothering You - Reality Club.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Music Button -->
+    <button onclick="toggleMusic()" id="musicBtn" class="fixed top-6 right-6 z-50 bg-white comic-border shadow-brutal px-4 py-2 rounded-full font-bold hover:translate-y-1 hover:shadow-brutal-sm transition-all duration-200">
+        🎵 Play
+    </button>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center py-20 px-6 border-b-8 border-black relative">
+        <div class="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <div class="order-2 md:order-1 text-center md:text-left">
+                <p class="font-bold text-pop-red text-xl mb-2 tracking-widest uppercase">The What, The Who, The When</p>
+                <h1 class="text-6xl md:text-7xl font-black leading-tight mb-6">
+                    Special Invitation for <br>
+                    <span class="text-pop-purple block mt-2">Mesica!</span>
+                </h1>
+                <p class="text-xl md:text-2xl font-medium text-gray-700 mb-8 border-l-4 border-black pl-4">
+                    Bersiaplah hari Selasa besok, karena kita bakal jalan-jalan seru seharian! 🏃‍♂️💨
+                </p>
+                <a href="#agenda" class="inline-block bg-pop-red text-white text-xl font-bold py-3 px-8 rounded-full comic-border shadow-brutal hover:translate-y-1 hover:shadow-brutal-sm transition-all duration-200">
+                    Lihat Agenda ↓
+                </a>
+            </div>
+
+            <div class="order-1 md:order-2 flex justify-center">
+                <!-- Placeholder Foto -->
+                <div class="relative w-64 h-80 md:w-80 md:h-[400px] bg-pop-pink rounded-3xl comic-border shadow-brutal-lg transform rotate-3 hover:rotate-0 transition-transform duration-300 overflow-hidden group">
+                    <img src="MESII.jpeg" alt="Foto Mesica" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE SECTION -->
+    <section id="agenda" class="py-24 px-6 bg-pop-blue border-b-8 border-black">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <p class="font-bold text-pop-purple text-lg uppercase tracking-widest mb-2">The Plan</p>
+                <h2 class="text-5xl md:text-6xl font-black text-black">Agenda Kencan Kita 📍</h2>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 comic-border shadow-brutal flex flex-col md:flex-row gap-6 items-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="bg-pop-yellow w-24 h-24 rounded-full comic-border flex items-center justify-center shrink-0 shadow-brutal-sm">
+                        <span class="text-4xl">🚆</span>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-black mb-2">13.15 – 14.15: Chapter 1: Misi Perjalanan</h3>
+                        <p class="text-lg font-medium text-gray-700">Mulai perjalanan KRL dari Rawa Buaya, muter-muter transit Duri & Manggarai sampe mendarat di Cikini. Siapin mental, fisik, dan saldo e-money ya!</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 comic-border shadow-brutal flex flex-col md:flex-row gap-6 items-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="bg-pop-pink w-24 h-24 rounded-full comic-border flex items-center justify-center shrink-0 shadow-brutal-sm">
+                        <span class="text-4xl">🤓</span>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-black mb-2">14.30 – 16.00: Chapter 2: Perpus Date!</h3>
+                        <p class="text-lg font-medium text-gray-700">Baca buku di Perpustakaan TIM! Kita nanti nyari novel yang Kamu suka, gayaan sok serius baca buku, keliling TIM, dan yang wajib sesi foto-foto estetik buat bahan buat update story kamu (Siap jadi PDD).</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 comic-border shadow-brutal flex flex-col md:flex-row gap-6 items-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="bg-pop-cream w-24 h-24 rounded-full comic-border flex items-center justify-center shrink-0 shadow-brutal-sm">
+                        <span class="text-4xl">🚕</span>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-black mb-2">16.00 – 16.30: Chapter 3: Perjalanan Selanjutnya</h3>
+                        <p class="text-lg font-medium text-gray-700">Perjalanan pindah tempat ke kawasan GBK. Jalurnya naik KRL ke Stasiun Sudirman, MRT dari Dukuh Atas ke Stasiun Istora Mandiri</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl p-6 md:p-8 comic-border shadow-brutal flex flex-col md:flex-row gap-6 items-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="bg-pop-purple w-24 h-24 rounded-full comic-border flex items-center justify-center shrink-0 shadow-brutal-sm text-white">
+                        <span class="text-4xl">🌇</span>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-black mb-2">16.30 – 18.30: Chapter 4: Sunset dan Menung</h3>
+                        <p class="text-lg font-medium text-gray-700">Jalan sore santai di area Lapangan Softball GBK. Waktunya kita "menung" bareng sambil nikmatin angin sore dan sunset berdua sambil bengong estetik.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section class="py-24 px-6 bg-pop-yellow flex items-center justify-center relative overflow-hidden">
+        
+        <div class="absolute -top-10 -left-10 text-9xl opacity-20 transform -rotate-12">✨</div>
+        <div class="absolute -bottom-10 -right-10 text-9xl opacity-20 transform rotate-12">👀</div>
+
+        <div class="max-w-3xl w-full text-center relative z-10" id="rsvpSection">
+            <h2 class="text-4xl md:text-5xl font-black mb-10 text-black">
+                So, Mesica... will you be my date this Tuesday?
+            </h2>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6 relative min-h-[140px] sm:min-h-[80px]">
+                
+                <button onclick="acceptDate()" class="bg-pop-red text-white text-2xl font-bold py-4 px-10 rounded-full comic-border shadow-brutal hover:translate-y-1 hover:shadow-brutal-sm hover:-rotate-2 transition-all duration-200 z-20 w-full sm:w-auto">
+                    Mau banget! ❤️
+                </button>
+                
+                <button id="noBtn" class="bg-white text-black text-2xl font-bold py-4 px-10 rounded-full comic-border shadow-brutal z-10 absolute sm:relative w-[80%] sm:w-auto">
+                    Enggak dulu 😜
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="successMessage" class="hidden max-w-3xl w-full text-center relative z-10">
+            <div class="text-7xl mb-6 animate-bounce">🚀</div>
+            <h2 class="text-5xl md:text-6xl font-black mb-6 text-black bg-white inline-block px-6 py-2 rounded-2xl comic-border shadow-brutal transform -rotate-2">
+                IT'S A DATE! 🎉
+            </h2>
+            <p class="text-2xl font-bold text-black mt-4 bg-white/80 p-4 rounded-xl comic-border inline-block shadow-brutal">
+                Sampai jumpa besok sayang! Siap-siap yang cantik ya! ❤️
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-pop-purple py-8 text-center text-white border-t-8 border-black">
+        <p class="font-bold text-lg">Made with ❤️ untuk Mesi.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Logika Audio
+        let isPlaying = false;
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.innerText = "🎵 Play";
+                musicBtn.classList.remove('bg-pop-pink');
+                musicBtn.classList.add('bg-white');
+            } else {
+                bgMusic.play().catch(e => console.log("Perlu interaksi user"));
+                musicBtn.innerText = "⏸️ Pause";
+                musicBtn.classList.remove('bg-white');
+                musicBtn.classList.add('bg-pop-pink');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Logika Tombol "Enggak dulu" yang kabur
+        const noBtn = document.getElementById('noBtn');
+
+        function moveButton() {
+            noBtn.style.position = 'fixed';
+            noBtn.style.zIndex = '9999';
+            
+            // Hitung sisa ruang layar dengan lebih ketat agar tidak bocor ke luar layar HP
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+            
+            // Dapatkan lebar dan tinggi visual layar (penting untuk HP)
+            const safeWidth = window.visualViewport ? window.visualViewport.width : window.innerWidth;
+            const safeHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+
+            const maxX = safeWidth - btnWidth - 20;
+            const maxY = safeHeight - btnHeight - 20;
+            
+            const randomX = Math.max(10, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(10, Math.floor(Math.random() * maxY));
+            
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+        }
+
+        // Event listener 
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Mencegah tap menjadi klik biasa
+            moveButton();
+        });
+
+        // Logika Tombol "Mau banget!"
+        function acceptDate() {
+            document.getElementById('rsvpSection').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+            
+            if (!isPlaying) {
+                toggleMusic();
+            }
+
+            // Confetti
+            var duration = 5 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 60 * (timeLeft / duration);
+                
+                confetti(Object.assign({}, defaults, { 
+                    particleCount,
+                    colors: ['#aedce3', '#f8c85c', '#ee3e38', '#f2a7be', '#362866'],
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+                }));
+                confetti(Object.assign({}, defaults, { 
+                    particleCount,
+                    colors: ['#aedce3', '#f8c85c', '#ee3e38', '#f2a7be', '#362866'],
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+                }));
+            }, 250);
+        }
+    </script>
+</body>
+</html>
